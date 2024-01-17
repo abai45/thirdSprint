@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .options {
+            max-width: 100vh;
+            margin: 50px auto;
+            display: flex;
+            gap: 20px
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .sumHeader {
+            margin: 0 0 10px;
+        }
+
+        .typeElements {
+            display: flex;
+            align-items: center;
+        }
+
+        select {
+            height: 38px;
+            width: 60px; 
+        }
+
+        .headerText {
+            margin: 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="options">
+            <p class="sumHeader">
+                Введите сумму:
+            </p>
+            <div class="typeElements">
+                <input type="text" id="mainInput" placeholder="Сумма...">
+                <select name="valute" id="valute">
+                    <option value="1">KZT</option>
+                    <option value="2">USD</option>
+                    <option value="3">EUR</option>
+                </select>
+            </div>
+        </div>
+        <div class="options">
+            <h3 class="headerText">
+                KZT (tenge)
+            </h3>
+            <input id="kztOutput" type="text" readonly>
+        </div>
+        <div class="options">
+            <h3 class="headerText">
+                USD (dollar)
+            </h3>
+            <input id="usdOutput" type="text" readonly>
+        </div>
+        <div class="options">
+            <h3 class="headerText">
+                EUR (euro)
+            </h3>
+            <input id="eurOutput" type="text" readonly>
+        </div>
+    </div>
+    <script>
+        let inputValue = document.querySelector('#mainInput');
+        let selectValue = document.querySelector('#valute');
+
+        let kztOutput = document.querySelector('#kztOutput');
+        let usdOutput = document.querySelector('#usdOutput');
+        let eurOutput = document.querySelector('#eurOutput');
+
+        selectValue.addEventListener('change', () => {
+            let input = parseFloat(inputValue.value);
+            if (selectValue.value === '1') {
+                kztOutput.value = '-';
+                usdOutput.value = input * 431;
+                eurOutput.value = input * 509;
+            } else if (selectValue.value === '2') {
+                usdOutput.value = '-';
+                kztOutput.value = (input * 429).toFixed(2);
+                eurOutput.value = (input * 0.846).toFixed(2); 
+            } else if (selectValue.value === '3') {
+                eurOutput.value = '-';
+                kztOutput.value = (input * 507).toFixed(2);
+                usdOutput.value = ((input * 509) / 431).toFixed(2);
+            }
+        });
+    </script>
+</body>
+</html>
+
