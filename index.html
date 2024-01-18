@@ -89,22 +89,30 @@
         let usdOutput = document.querySelector('#usdOutput');
         let eurOutput = document.querySelector('#eurOutput');
 
-        selectValue.addEventListener('change', () => {
+        selectValue.addEventListener('input', myFunc);
+        inputValue.addEventListener('input', myFunc);
+        function myFunc() {
             let input = parseFloat(inputValue.value);
-            if (selectValue.value === '1') {
-                kztOutput.value = '-';
-                usdOutput.value = input * 431;
-                eurOutput.value = input * 509;
-            } else if (selectValue.value === '2') {
-                usdOutput.value = '-';
-                kztOutput.value = (input * 429).toFixed(2);
-                eurOutput.value = (input * 0.846).toFixed(2); 
-            } else if (selectValue.value === '3') {
-                eurOutput.value = '-';
-                kztOutput.value = (input * 507).toFixed(2);
-                usdOutput.value = ((input * 509) / 431).toFixed(2);
+            if (!isNaN(input)) {
+                if (selectValue.value === '1') {
+                    kztOutput.value = '-';
+                    usdOutput.value = input * 431;
+                    eurOutput.value = input * 509;
+                } else if (selectValue.value === '2') {
+                    usdOutput.value = '-';
+                    kztOutput.value = (input * 429).toFixed(2);
+                    eurOutput.value = (input * 0.846).toFixed(2); 
+                } else if (selectValue.value === '3') {
+                    eurOutput.value = '-';
+                    kztOutput.value = (input * 507).toFixed(2);
+                    usdOutput.value = ((input * 509) / 431).toFixed(2);
+                }
+            } else {
+                kztOutput.value = 'Введите число';
+                usdOutput.value = 'Введите число';
+                eurOutput.value = 'Введите число';
             }
-        });
+        };
     </script>
 </body>
 </html>
