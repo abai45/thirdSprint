@@ -96,8 +96,8 @@
             if (!isNaN(input)) {
                 if (selectValue.value === '1') {
                     kztOutput.value = '-';
-                    usdOutput.value = input * 431;
-                    eurOutput.value = input * 509;
+                    usdOutput.value = (input / 429).toFixed(2);
+                    eurOutput.value = (input / 507).toFixed(2);
                 } else if (selectValue.value === '2') {
                     usdOutput.value = '-';
                     kztOutput.value = (input * 429).toFixed(2);
